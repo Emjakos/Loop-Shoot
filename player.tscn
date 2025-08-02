@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://wmayu3oi50hr"]
 
 [ext_resource type="Script" path="res://playerController.gd" id="1_yp2y7"]
-[ext_resource type="PackedScene" uid="uid://dt1rj82ic1mdy" path="res://bullet.tscn" id="2_bi62m"]
+[ext_resource type="PackedScene" path="res://bullet.tscn" id="2_bi62m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2v5w2"]
 

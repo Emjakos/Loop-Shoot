@@ -7,7 +7,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if (!path.is_empty() && path_index<path.size()):
 		global_transform = path[path_index]
 		path_index+=1
