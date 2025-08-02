@@ -22,3 +22,7 @@ skeleton = NodePath("../..")
 
 [node name="Player" parent="." instance=ExtResource("1_acvw3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.34202, 0.939693, 0, -0.939693, -0.34202, 0, 0, 0)
+light_angular_distance = 27.11
