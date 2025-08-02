@@ -5,19 +5,21 @@ extends CharacterBody3D
 # The downward acceleration when in the air, in meters per second squared.
 @export var fall_acceleration = 75
 
-var mouse_sens = 0.3
+var LOOKAROUND_SPEED = 0.01
 var camera_anglev = 0
 
 var target_velocity = Vector3.ZERO
 
+var rot_x = 0
+var rot_y = 0
+
 func _input(event):  		
 	if event is InputEventMouseMotion:
-		#$Camera3D.rotate_y(deg_to_rad(-event.relative.x*mouse_sens))
-		rotate_y(deg_to_rad(-event.relative.x*mouse_sens))
-		var changev=-event.relative.y*mouse_sens
-		if camera_anglev+changev>-50 and camera_anglev+changev<50:
-			camera_anglev+=changev
-			$Camera3D.rotate_x(deg_to_rad(changev))
+		rot_x += -event.relative.x * LOOKAROUND_SPEED
+		rot_y += -event.relative.y * LOOKAROUND_SPEED
+		transform.basis = Basis()
+		rotate_object_local(Vector3.UP, rot_x)
+		rotate_object_local(Vector3.RIGHT, rot_y)
 
 
 func _physics_process(delta):
