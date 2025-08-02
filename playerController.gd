@@ -3,27 +3,44 @@ extends CharacterBody3D
 # How fast the player moves in meters per second.
 @export var speed = 8
 @export var jump_speed = 5
+@export var lookaround_speed = 0.01
 
 var GRAVITY = ProjectSettings.get_setting("physics/3d/default_gravity")
 var GRAVITY_DIR = ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 
-var LOOKAROUND_SPEED = 0.01
+@export var bullet_scene: PackedScene
+@export var bullet_speed = 20
 
-var rot_x = 0
-var rot_y = 0
+func _shoot():
+	var main_scene = get_parent_node_3d()
+	var bullet: RigidBody3D = bullet_scene.instantiate()
+	var camera = $Camera3D
+	bullet.transform = camera.global_transform
+	bullet.translate_object_local(Vector3.FORWARD)
+	bullet.apply_central_impulse((bullet.position - camera.global_position).normalized() * bullet_speed)
+	
+	main_scene.add_child(bullet)
+
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
+var rot_x = 0
+var rot_y = 0
+
 func _input(event):  		
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED and event.is_action_pressed("click"):
+		
+	if event.is_action_pressed("click") and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	elif event.is_action_pressed("click") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		_shoot()
+		
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and event is InputEventMouseMotion:
-		rot_x += -event.relative.x * LOOKAROUND_SPEED
-		rot_y += -event.relative.y * LOOKAROUND_SPEED
+		rot_x += -event.relative.x * lookaround_speed
+		rot_y += -event.relative.y * lookaround_speed
 		transform.basis = Basis()
 		rotate_object_local(Vector3.UP, rot_x)
 		rotate_object_local(Vector3.RIGHT, rot_y)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://wmayu3oi50hr"]
+[gd_scene load_steps=6 format=3 uid="uid://wmayu3oi50hr"]
 
 [ext_resource type="Script" path="res://playerController.gd" id="1_yp2y7"]
+[ext_resource type="PackedScene" uid="uid://dt1rj82ic1mdy" path="res://bullet.tscn" id="2_bi62m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2v5w2"]
 
@@ -10,6 +11,7 @@
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_yp2y7")
+bullet_scene = ExtResource("2_bi62m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_2v5w2")

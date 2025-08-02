@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt1rj82ic1mdy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1agme"]
+radius = 0.09
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_f0om6"]
+
+[node name="Bullet" type="RigidBody3D"]
+mass = 0.007
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_1agme")
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.09, 0, 0, 0, -3.93403e-09, -0.09, 0, 0.09, -3.93403e-09, 0, 0, 0)
+mesh = SubResource("CylinderMesh_f0om6")
+metadata/_edit_lock_ = true
