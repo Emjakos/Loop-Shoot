@@ -4,6 +4,8 @@ extends CharacterBody3D
 @export var speed = 8
 @export var jump_speed = 5
 @export var lookaround_speed = 0.01
+@export var max_rot_y = 0.75 * PI
+@export var min_rot_y = -PI/2
 
 var GRAVITY = ProjectSettings.get_setting("physics/3d/default_gravity")
 var GRAVITY_DIR = ProjectSettings.get_setting("physics/3d/default_gravity_vector")
@@ -41,6 +43,7 @@ func _input(event):
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and event is InputEventMouseMotion:
 		rot_x += -event.relative.x * lookaround_speed
 		rot_y += -event.relative.y * lookaround_speed
+		rot_y = clampf(rot_y, min_rot_y, max_rot_y)
 		transform.basis = Basis()
 		rotate_object_local(Vector3.UP, rot_x)
 		rotate_object_local(Vector3.RIGHT, rot_y)
