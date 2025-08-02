@@ -19,7 +19,7 @@ func _ready():
 func _input(event):  		
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	if event.is_action_pressed("click"):
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED and event.is_action_pressed("click"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and event is InputEventMouseMotion:
 		rot_x += -event.relative.x * LOOKAROUND_SPEED
