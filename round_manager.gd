@@ -10,7 +10,7 @@ signal round_started
 signal round_won
 signal round_failed
 
-var round_times = [5, 7.5, 10, 12.5, 15]
+var round_times = [7.5, 10, 12.5, 15, 17.5, 20]
 
 func _ready():
 	start_round()
