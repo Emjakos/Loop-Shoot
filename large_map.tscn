@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cfkbfxmcj2tib"]
+[gd_scene load_steps=29 format=3 uid="uid://cfkbfxmcj2tib"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_osynt"]
 size = Vector3(2, 0.25, 2)
@@ -63,6 +63,19 @@ height = 0.25
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fvv08"]
+size = Vector3(0.25, 2, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5ocbs"]
+size = Vector3(0.25, 2, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tyjpt"]
+size = Vector3(0.25, 0.255, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avou2"]
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_o8n4s"]
 size = Vector3(50, 1, 25)
 
@@ -78,9 +91,9 @@ size = Vector3(0.25, 15, 0.25)
 [node name="Large_Map" type="Node3D"]
 
 [node name="Building_Blocks" type="Node3D" parent="."]
-visible = false
 
 [node name="Tile" type="StaticBody3D" parent="Building_Blocks"]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Building_Blocks/Tile"]
 transform = Transform3D(1.00075, 0, 0, 0, 1.00075, 0, 0, 0, 1.00075, 0, 0, 0)
@@ -90,6 +103,7 @@ mesh = SubResource("BoxMesh_osynt")
 shape = SubResource("BoxShape3D_vt3h2")
 
 [node name="Subtile" type="StaticBody3D" parent="Building_Blocks"]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Building_Blocks/Subtile"]
 mesh = SubResource("BoxMesh_bp8c7")
@@ -98,6 +112,7 @@ mesh = SubResource("BoxMesh_bp8c7")
 shape = SubResource("BoxShape3D_mvkgi")
 
 [node name="Doorway" type="StaticBody3D" parent="Building_Blocks"]
+visible = false
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Building_Blocks/Doorway"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 0)
@@ -108,6 +123,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 0)
 shape = SubResource("BoxShape3D_loppf")
 
 [node name="Window" type="StaticBody3D" parent="Building_Blocks"]
+visible = false
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Building_Blocks/Window"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 0)
@@ -143,6 +159,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1,
 shape = SubResource("BoxShape3D_mvkgi")
 
 [node name="Wall" type="StaticBody3D" parent="Building_Blocks"]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Building_Blocks/Wall"]
 mesh = SubResource("BoxMesh_43y03")
@@ -151,6 +168,7 @@ mesh = SubResource("BoxMesh_43y03")
 shape = SubResource("BoxShape3D_5ah0s")
 
 [node name="Supertile" type="StaticBody3D" parent="Building_Blocks"]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Building_Blocks/Supertile"]
 mesh = SubResource("BoxMesh_03g20")
@@ -159,6 +177,7 @@ mesh = SubResource("BoxMesh_03g20")
 shape = SubResource("BoxShape3D_0qmud")
 
 [node name="Superwall" type="StaticBody3D" parent="Building_Blocks"]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Building_Blocks/Superwall"]
 mesh = SubResource("BoxMesh_f5ll7")
@@ -167,6 +186,7 @@ mesh = SubResource("BoxMesh_f5ll7")
 shape = SubResource("BoxShape3D_5t0hc")
 
 [node name="Ramp" type="StaticBody3D" parent="Building_Blocks"]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Building_Blocks/Ramp"]
 transform = Transform3D(1, 0, 0, 0, 0.800731, -0.599024, 0, 0.599024, 0.800731, 0, -0.125, 0)
@@ -178,6 +198,7 @@ transform = Transform3D(1, 0, 0, 0, 0.800731, -0.599024, 0, 0.599024, 0.800731, 
 shape = SubResource("BoxShape3D_0w3qt")
 
 [node name="Light" type="Node3D" parent="Building_Blocks"]
+visible = false
 
 [node name="Light" type="SpotLight3D" parent="Building_Blocks/Light"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -191,6 +212,29 @@ gi_mode = 0
 mesh = SubResource("CylinderMesh_kamnn")
 skeleton = NodePath("../Light")
 surface_material_override/0 = SubResource("StandardMaterial3D_57kjy")
+
+[node name="Streetlight" type="StaticBody3D" parent="Building_Blocks"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building_Blocks/Streetlight"]
+transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, 2, 0)
+shape = SubResource("BoxShape3D_fvv08")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Building_Blocks/Streetlight"]
+transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, 2, 0)
+mesh = SubResource("BoxMesh_5ocbs")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Building_Blocks/Streetlight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.161266, -0.0783007)
+shape = SubResource("BoxShape3D_fvv08")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Building_Blocks/Streetlight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.161266, -0.0783007)
+mesh = SubResource("BoxMesh_5ocbs")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Building_Blocks/Streetlight"]
+transform = Transform3D(1, 0, 0, 0, 0.998699, 0.0509938, 0, -0.0509938, 0.998699, 0, 2.84319, -0.50489)
+mesh = SubResource("BoxMesh_tyjpt")
+surface_material_override/0 = SubResource("StandardMaterial3D_avou2")
 
 [node name="Villa" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, 0)
@@ -1867,6 +1911,28 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 0.800731, -0.599024, 0, 0.599024, 0.800731, 0, -0.125, 0)
 shape = SubResource("BoxShape3D_0w3qt")
 
+[node name="Ramp3" type="StaticBody3D" parent="Villa/Villa_1st_floor"]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, -0.810897, -1.42065, 10.3484)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Villa/Villa_1st_floor/Ramp3"]
+transform = Transform3D(1, 0, 0, 0, 0.800731, -0.599024, 0, 0.599024, 0.800731, 0, -0.125, 0)
+mesh = SubResource("BoxMesh_dt7jj")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Villa/Villa_1st_floor/Ramp3"]
+transform = Transform3D(1, 0, 0, 0, 0.800731, -0.599024, 0, 0.599024, 0.800731, 0, -0.125, 0)
+shape = SubResource("BoxShape3D_0w3qt")
+
+[node name="Tile" type="StaticBody3D" parent="Villa/Villa_1st_floor/Ramp3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0332327, 1.3278, -2.94754)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Villa/Villa_1st_floor/Ramp3/Tile"]
+transform = Transform3D(1.00075, 0, 0, 0, 1.00075, 0, 0, 0, 1.00075, 0, 0, 0)
+mesh = SubResource("BoxMesh_osynt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Villa/Villa_1st_floor/Ramp3/Tile"]
+shape = SubResource("BoxShape3D_vt3h2")
+
 [node name="Light" type="Node3D" parent="Villa"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.54213, 0.990014)
 
@@ -2550,7 +2616,7 @@ mesh = SubResource("BoxMesh_03g20")
 shape = SubResource("BoxShape3D_0qmud")
 
 [node name="Small_House" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62328, -37)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.96363, -37)
 
 [node name="Superwall" type="StaticBody3D" parent="Small_House"]
 
@@ -2806,7 +2872,7 @@ skeleton = NodePath("../Light")
 surface_material_override/0 = SubResource("StandardMaterial3D_57kjy")
 
 [node name="Small_House2" type="Node3D" parent="."]
-transform = Transform3D(0.805091, 0, 0.593152, 0, 1, 0, -0.593152, 0, 0.805091, 10.0598, 1.62328, -33.2195)
+transform = Transform3D(0.805091, 0, 0.593152, 0, 1, 0, -0.593152, 0, 0.805091, 10.0598, 1.94105, -33.2195)
 
 [node name="Superwall" type="StaticBody3D" parent="Small_House2"]
 
@@ -3190,7 +3256,7 @@ skeleton = NodePath("../Light")
 surface_material_override/0 = SubResource("StandardMaterial3D_57kjy")
 
 [node name="Small_House4" type="Node3D" parent="."]
-transform = Transform3D(0.758942, 0, -0.651158, 0, 1, 0, 0.651158, 0, 0.758942, -16.6935, 1.62328, -28.155)
+transform = Transform3D(0.758942, 0, -0.651158, 0, 1, 0, 0.651158, 0, 0.758942, -16.6935, 1.96318, -28.155)
 
 [node name="Superwall" type="StaticBody3D" parent="Small_House4"]
 
@@ -3683,3 +3749,4 @@ shape = SubResource("BoxShape3D_0qmud")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.688582, -0.605759, -0.398636, 0, -0.549723, 0.835347, -0.725158, -0.575205, -0.378529, 0, 8.17998, -17.0295)
+shadow_enabled = true
