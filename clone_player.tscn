@@ -7,7 +7,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_asinl"]
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="clone_player" type="CharacterBody3D"]
 script = ExtResource("1_y1xm2")
 bullet_scene = ExtResource("2_0hjji")
 

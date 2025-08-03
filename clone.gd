@@ -3,6 +3,7 @@ var path: Array[Transform3D] = []
 var shots: Array[bool] = []
 var aims: Array[Transform3D] = []
 var path_index: int = 0
+var bullets: Array[Node3D] = []
 @export var bullet_scene: PackedScene
 @export var bullet_speed = 20
 
@@ -23,12 +24,20 @@ func set_path(new_path: Array[Transform3D], new_shots: Array[bool], new_aims: Ar
 	path = new_path
 	shots = new_shots
 	aims = new_aims
+	
+func receive_bullet(from_player):
+	destroy()
+	
 func destroy() -> void:
+	for bullet in bullets:
+		if (bullet != null):
+			bullet.destroy()
 	queue_free()
 
 func _shoot():
 	var main_scene = get_tree().get_root()
 	var bullet: RigidBody3D = bullet_scene.instantiate()
+	bullets.push_back(bullet)
 	var camera = $Camera3D
 	bullet.transform = camera.global_transform
 	bullet.translate_object_local(Vector3.FORWARD)

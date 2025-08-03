@@ -12,6 +12,8 @@ func _input(event):
 		end_round()
 
 func start_round() -> void:
+	if (current_round >= spawn_points.size()):
+		current_round = 0
 	player.global_transform = spawn_points[current_round].transform
 	clone_manager.start_new_track()
 	clone_manager.spawn_clones()
