@@ -34,6 +34,10 @@ func _shoot():
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	transform.basis = Basis()
+	$Camera3D.basis = Basis()
+	rotate_object_local(Vector3.UP, rot_x)
+	$Camera3D.rotate_object_local(Vector3.RIGHT, rot_y)
 
 
 var rot_x = 0

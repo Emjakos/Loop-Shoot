@@ -51,6 +51,7 @@ func spawn_clones() -> void:
 	
 func delete_clones() -> void:
 	for clone in clones:
-		clone.destroy()
+		if (clone != null):
+			clone.destroy()
 	player.destroy_bullets()
 	clones = []

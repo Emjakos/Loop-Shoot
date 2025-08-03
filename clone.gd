@@ -24,9 +24,14 @@ func set_path(new_path: Array[Transform3D], new_shots: Array[bool], new_aims: Ar
 	path = new_path
 	shots = new_shots
 	aims = new_aims
+	
+func receive_bullet(from_player):
+	destroy()
+	
 func destroy() -> void:
 	for bullet in bullets:
-		bullet.destroy()
+		if (bullet != null):
+			bullet.destroy()
 	queue_free()
 
 func _shoot():
