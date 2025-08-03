@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsrr02mx8ej31"]
+
+[ext_resource type="PackedScene" uid="uid://cdsgtqoex00k0" path="res://character_head.glb" id="1_ifdxo"]
+
+[node name="character_head" instance=ExtResource("1_ifdxo")]
+
+[node name="Cube_001" parent="." index="0"]
+visibility_range_begin = 0.1

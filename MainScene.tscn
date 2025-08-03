@@ -2,8 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://wmayu3oi50hr" path="res://player.tscn" id="1_acvw3"]
 [ext_resource type="Script" path="res://clone_manager.gd" id="1_va2a3"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://debwi7x2pf067" path="res://clone_player.tscn" id="2_extyo"]
 [ext_resource type="Script" path="res://round_manager.gd" id="4_ys46s"]
+=======
+[ext_resource type="PackedScene" uid="uid://c5bh8wgjj62vt" path="res://clone_player.tscn" id="2_extyo"]
+>>>>>>> Stashed changes
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qkri0"]
 size = Vector3(20, 1, 20)
