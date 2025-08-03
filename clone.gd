@@ -32,7 +32,7 @@ func set_path(new_path: Array[Transform3D], new_shots: Array[bool], new_aims: Ar
 	aims = new_aims
 	
 func set_order(n: int):
-	slow_multiplier = 2 ** n
+	slow_multiplier = 1 ** n
 	#slow_multiplier = 1
 	
 func receive_bullet(from_player):

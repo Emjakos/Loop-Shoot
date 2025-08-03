@@ -2609,6 +2609,10 @@ mesh = SubResource("BoxMesh_03g20")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Maze/Supertile/Supertile2/Supertile2/Supertile2/Supertile2/Supertile3/Supertile2/Supertile3/Supertile2/Supertile2/Supertile2/Supertile2/Supertile2/Supertile2/Supertile2/Supertile2/Supertile2/Supertile2/Supertile2/Supertile2/Supertile2"]
 shape = SubResource("BoxShape3D_0qmud")
 
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Maze/Supertile/Supertile2/Supertile2"]
+transform = Transform3D(1, -6.44663e-22, 0, -1.67038e-22, 1, 0, 0, 0, 1, 0, 0, 4)
+shape = SubResource("BoxShape3D_0qmud")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Maze/Supertile"]
 mesh = SubResource("BoxMesh_03g20")
 
