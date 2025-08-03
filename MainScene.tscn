@@ -1,12 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://bvh4xp75486ok"]
+[gd_scene load_steps=20 format=3 uid="uid://bvh4xp75486ok"]
 
 [ext_resource type="PackedScene" uid="uid://wmayu3oi50hr" path="res://player.tscn" id="1_acvw3"]
 [ext_resource type="Script" path="res://clone_manager.gd" id="1_va2a3"]
 [ext_resource type="Script" path="res://Target.gd" id="2_6wh6x"]
 [ext_resource type="PackedScene" uid="uid://c4xltq2ymw8oa" path="res://clone_player.tscn" id="2_extyo"]
+[ext_resource type="PackedScene" uid="uid://b8ov5qvttnv3d" path="res://target_body.tscn" id="3_g7fkj"]
 [ext_resource type="Script" path="res://round_manager.gd" id="4_ys46s"]
 [ext_resource type="FontFile" uid="uid://d0fgeumvb7om5" path="res://fonts/Quantico/Quantico-BoldItalic.ttf" id="6_7ncts"]
 [ext_resource type="Script" path="res://objective_label.gd" id="7_qqgus"]
+[ext_resource type="PackedScene" uid="uid://cfkbfxmcj2tib" path="res://large_map.tscn" id="9_rea1c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qkri0"]
 size = Vector3(20, 1, 20)
@@ -39,7 +41,7 @@ default_font_size = 200
 [node name="Node3D" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_acvw3")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15, 5, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -48,6 +50,7 @@ light_angular_distance = 27.11
 
 [node name="Map" type="Node3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
 
 [node name="Ceiling" type="Node3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
@@ -345,17 +348,21 @@ mesh = SubResource("CylinderMesh_178kh")
 surface_material_override/0 = SubResource("StandardMaterial3D_rqwgx")
 
 [node name="Target" type="StaticBody3D" parent="." node_paths=PackedStringArray("round_manager")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.25, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 4.2, -5)
 script = ExtResource("2_6wh6x")
 round_manager = NodePath("../Managers/RoundManager")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Target"]
+visible = false
 mesh = SubResource("CapsuleMesh_suie4")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_cajac")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Target"]
 shape = SubResource("CapsuleShape3D_la0ih")
+
+[node name="target_body" parent="Target" instance=ExtResource("3_g7fkj")]
+transform = Transform3D(0.24, 0, 0, 0, 0.24, 0, 0, 0, 0.24, 0, -1, 0)
 
 [node name="Managers" type="Node3D" parent="."]
 
@@ -377,16 +384,23 @@ one_shot = true
 [node name="Spawnpoints" type="Node3D" parent="."]
 
 [node name="Spawn_1" type="Node3D" parent="Spawnpoints"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, 5, 0)
+transform = Transform3D(0.033975, 0, 0.999423, 0, 1, 0, -0.999423, 0, 0.033975, -2.79397, 1, -45.2495)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Spawnpoints/Spawn_1"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.2, 0, 1, -8.74228e-09, 0, 0, 0)
 mesh = SubResource("PrismMesh_l72xt")
 
 [node name="Spawn_2" type="Node3D" parent="Spawnpoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -10)
+transform = Transform3D(0.692257, 0, 0.721651, 0, 1, 0, -0.721651, 0, 0.692257, -13.1269, 1, -35.4955)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Spawnpoints/Spawn_2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.2, 0, 1, -8.74228e-09, 0, 0, 0)
+mesh = SubResource("PrismMesh_l72xt")
+
+[node name="Spawn_3" type="Node3D" parent="Spawnpoints"]
+transform = Transform3D(-0.999998, 0, -0.00190243, 0, 1, 0, 0.00190243, 0, -0.999998, -14.9579, 13.75, 0.908436)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spawnpoints/Spawn_3"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.2, 0, 1, -8.74228e-09, 0, 0, 0)
 mesh = SubResource("PrismMesh_l72xt")
 
@@ -416,6 +430,8 @@ script = ExtResource("7_qqgus")
 [node name="Crosshair" type="Label" parent="UserInterface/CenterContainer"]
 layout_mode = 2
 text = "+"
+
+[node name="Large_Map" parent="." instance=ExtResource("9_rea1c")]
 
 [connection signal="round_failed" from="Managers/RoundManager" to="UserInterface/CenterContainer/ObjectiveLabel" method="_on_round_manager_round_failed"]
 [connection signal="round_started" from="Managers/RoundManager" to="UserInterface/CenterContainer/ObjectiveLabel" method="_on_round_manager_round_started"]
