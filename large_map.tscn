@@ -3680,3 +3680,6 @@ mesh = SubResource("BoxMesh_03g20")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Road/Supertile/Supertile2/Supertile/Supertile2/Supertile/Supertile2/Supertile/Supertile2/Supertile/Supertile2/Supertile/Supertile2/Supertile/Supertile2/Supertile/Supertile2/Supertile/Supertile2/Supertile/Supertile2/Supertile/Supertile2/Supertile/Supertile2/Supertile/Supertile2"]
 shape = SubResource("BoxShape3D_0qmud")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.688582, -0.605759, -0.398636, 0, -0.549723, 0.835347, -0.725158, -0.575205, -0.378529, 0, 8.17998, -17.0295)
