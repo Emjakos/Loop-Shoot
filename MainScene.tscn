@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bvh4xp75486ok"]
+[gd_scene load_steps=23 format=3 uid="uid://bvh4xp75486ok"]
 
 [ext_resource type="PackedScene" uid="uid://wmayu3oi50hr" path="res://player.tscn" id="1_acvw3"]
 [ext_resource type="Script" path="res://clone_manager.gd" id="1_va2a3"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://c4xltq2ymw8oa" path="res://clone_player.tscn" id="2_extyo"]
 [ext_resource type="Script" path="res://round_manager.gd" id="4_ys46s"]
 [ext_resource type="FontFile" uid="uid://d0fgeumvb7om5" path="res://fonts/Quantico/Quantico-BoldItalic.ttf" id="6_7ncts"]
+[ext_resource type="Script" path="res://round_timer_progress_bar.gd" id="6_jmt14"]
+[ext_resource type="FontFile" uid="uid://nya7rxmdi73m" path="res://fonts/Quantico/Quantico-Italic.ttf" id="7_jbaeb"]
 [ext_resource type="Script" path="res://objective_label.gd" id="7_qqgus"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qkri0"]
@@ -32,9 +34,19 @@ albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_l72xt"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27al1"]
+bg_color = Color(1, 0, 0, 0.0784314)
+
+[sub_resource type="Theme" id="Theme_dpb75"]
+default_font = ExtResource("7_jbaeb")
+default_font_size = 500
+
 [sub_resource type="Theme" id="Theme_80t45"]
 default_font = ExtResource("6_7ncts")
 default_font_size = 200
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_us7u6"]
+size = Vector3(1000, 3, 1000)
 
 [node name="Node3D" type="Node3D"]
 
@@ -374,6 +386,9 @@ objective_label = NodePath("../../UserInterface/CenterContainer/ObjectiveLabel")
 [node name="RoundStartTimer" type="Timer" parent="Managers/RoundManager"]
 one_shot = true
 
+[node name="RoundTimer" type="Timer" parent="Managers/RoundManager"]
+one_shot = true
+
 [node name="Spawnpoints" type="Node3D" parent="."]
 
 [node name="Spawn_1" type="Node3D" parent="Spawnpoints"]
@@ -398,6 +413,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="RoundTimerProgressBar" type="ProgressBar" parent="UserInterface" node_paths=PackedStringArray("round_timer")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_27al1")
+show_percentage = false
+script = ExtResource("6_jmt14")
+round_timer = NodePath("../../Managers/RoundManager/RoundTimer")
+
+[node name="TimeLeftLabel" type="Label" parent="UserInterface/RoundTimerProgressBar"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_dpb75")
+theme_override_colors/font_color = Color(1, 1, 1, 0.392157)
+text = "Timer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="CenterContainer" type="CenterContainer" parent="UserInterface"]
 layout_mode = 1
 anchors_preset = 15
@@ -410,14 +451,22 @@ grow_vertical = 2
 layout_mode = 2
 theme = SubResource("Theme_80t45")
 theme_override_colors/font_color = Color(1, 0, 0, 0.196078)
-text = "[PLACEHOLDER]"
+text = "Objective"
 script = ExtResource("7_qqgus")
 
 [node name="Crosshair" type="Label" parent="UserInterface/CenterContainer"]
 layout_mode = 2
 text = "+"
 
+[node name="Killbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.3035, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Killbox"]
+shape = SubResource("BoxShape3D_us7u6")
+
 [connection signal="round_failed" from="Managers/RoundManager" to="UserInterface/CenterContainer/ObjectiveLabel" method="_on_round_manager_round_failed"]
 [connection signal="round_started" from="Managers/RoundManager" to="UserInterface/CenterContainer/ObjectiveLabel" method="_on_round_manager_round_started"]
 [connection signal="round_won" from="Managers/RoundManager" to="UserInterface/CenterContainer/ObjectiveLabel" method="_on_round_manager_round_won"]
 [connection signal="timeout" from="Managers/RoundManager/RoundStartTimer" to="Managers/RoundManager" method="_on_round_start_timer_timeout"]
+[connection signal="timeout" from="Managers/RoundManager/RoundTimer" to="Managers/RoundManager" method="_on_round_timer_timeout"]
+[connection signal="body_entered" from="Killbox" to="Managers/RoundManager" method="_on_killbox_body_entered"]

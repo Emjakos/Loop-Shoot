@@ -10,6 +10,8 @@ signal round_started
 signal round_won
 signal round_failed
 
+var round_times = [5, 7.5, 10, 12.5, 15]
+
 func _ready():
 	start_round()
 
@@ -25,6 +27,8 @@ func start_round() -> void:
 		current_round = 0
 	player.global_transform = spawn_points[current_round].transform
 	round_started.emit()
+	$RoundTimer.paused = false
+	$RoundTimer.start(round_times[current_round])
 	clone_manager.start_new_track()
 	clone_manager.spawn_clones()
 	
@@ -43,8 +47,19 @@ func round_fail() -> void:
 func end_round() -> void:
 	clone_manager.delete_clones()
 	player.controls_disabled = true
+	$RoundTimer.paused = true
 	$RoundStartTimer.start()
 	
 
 func _on_round_start_timer_timeout() -> void:
 	start_round()
+
+
+func _on_killbox_body_entered(body: Node3D) -> void:
+	print_debug("Killbox triggered")
+	if body == player:
+		round_fail()
+
+
+func _on_round_timer_timeout() -> void:
+	round_fail()
