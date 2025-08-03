@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://playerController.gd" id="1_yp2y7"]
 [ext_resource type="PackedScene" uid="uid://dt1rj82ic1mdy" path="res://bullet.tscn" id="2_bi62m"]
-[ext_resource type="PackedScene" uid="uid://bhokqvvquh4ob" path="res://character_body.tscn" id="2_rnkng"]
-[ext_resource type="PackedScene" uid="uid://rqsg3uhtcer5" path="res://character_head.tscn" id="4_00o4r"]
+[ext_resource type="PackedScene" path="res://character_body.tscn" id="2_rnkng"]
+[ext_resource type="PackedScene" path="res://character_head.tscn" id="4_00o4r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2v5w2"]
 
