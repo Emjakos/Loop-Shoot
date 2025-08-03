@@ -23,7 +23,6 @@ func start_round() -> void:
 		objective_label.set_start_round_text()
 	else:
 		objective_label.set_start_next_round_text()
-	objective_label
 	clone_manager.start_new_track()
 	clone_manager.spawn_clones()
 	
