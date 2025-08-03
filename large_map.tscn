@@ -238,7 +238,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_avou2")
 
 [node name="Villa" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, 0)
-visible = false
 
 [node name="Villa_2nd_floor" type="Node3D" parent="Villa"]
 
