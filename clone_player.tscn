@@ -1,17 +1,11 @@
-<<<<<<< Updated upstream
-[gd_scene load_steps=6 format=3 uid="uid://debwi7x2pf067"]
-=======
-[gd_scene load_steps=5 format=3 uid="uid://c5bh8wgjj62vt"]
->>>>>>> Stashed changes
+[gd_scene load_steps=6 format=3 uid="uid://c4xltq2ymw8oa"]
 
 [ext_resource type="Script" path="res://clone.gd" id="1_y1xm2"]
-[ext_resource type="PackedScene" path="res://bullet.tscn" id="2_0hjji"]
+[ext_resource type="PackedScene" uid="uid://dt1rj82ic1mdy" path="res://bullet.tscn" id="2_0hjji"]
+[ext_resource type="PackedScene" uid="uid://bhokqvvquh4ob" path="res://character_body.tscn" id="3_x4wtp"]
+[ext_resource type="PackedScene" uid="uid://rqsg3uhtcer5" path="res://character_head.tscn" id="4_jdbmg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_asinl"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_v3fr7"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_8qgr8"]
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_y1xm2")
@@ -20,15 +14,12 @@ bullet_scene = ExtResource("2_0hjji")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_asinl")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_v3fr7")
-skeleton = NodePath("../..")
+[node name="character_body" parent="." instance=ExtResource("3_x4wtp")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.821248, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
-transform = Transform3D(0.1, 0, 0, 0, -8.74228e-09, -0.1, 0, 0.2, -4.37114e-09, 0.25, -0.5, -0.5)
-mesh = SubResource("CylinderMesh_8qgr8")
+[node name="character_head" parent="Camera3D" instance=ExtResource("4_jdbmg")]
+transform = Transform3D(-0.24, 0, -2.09815e-08, 0, 0.24, 0, 2.09815e-08, 0, -0.24, 0, -1.77406, 0)
 
 [node name="Node3D" type="Node3D" parent="."]

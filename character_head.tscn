@@ -1,8 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsrr02mx8ej31"]
+[gd_scene load_steps=2 format=3 uid="uid://rqsg3uhtcer5"]
 
-[ext_resource type="PackedScene" uid="uid://cdsgtqoex00k0" path="res://character_head.glb" id="1_ifdxo"]
+[ext_resource type="PackedScene" uid="uid://cxwrx6s6jcfd8" path="res://character_body.glb" id="1_rvnn5"]
 
-[node name="character_head" instance=ExtResource("1_ifdxo")]
+[node name="character_head" instance=ExtResource("1_rvnn5")]
+transform = Transform3D(-0.24, 0, -2.09815e-08, 0, 0.24, 0, 2.09815e-08, 0, -0.24, 0, -1, 0)
 
-[node name="Cube_001" parent="." index="0"]
+[node name="Sphere" parent="." index="0"]
+visible = false
+
+[node name="Cube" parent="." index="1"]
+visible = false
+visibility_range_begin = 0.75
+
+[node name="Cube_001" parent="." index="2"]
 visibility_range_begin = 0.1
+
+[node name="Cube_002" parent="." index="3"]
+visible = false
+
+[node name="Cube_003" parent="." index="4"]
+transform = Transform3D(0.988956, -0.148208, 2.84217e-14, 0.148208, 0.988956, 0, -2.84217e-14, 8.88178e-16, 1, -1.30339, 6.17933, 2.25763)
+
+[node name="Cube_004" parent="." index="5"]
+visible = false

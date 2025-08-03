@@ -48,8 +48,9 @@ func _input(event):
 		rot_y += -event.relative.y * lookaround_speed
 		rot_y = clampf(rot_y, min_rot_y, max_rot_y)
 		transform.basis = Basis()
+		$Camera3D.basis = Basis()
 		rotate_object_local(Vector3.UP, rot_x)
-		rotate_object_local(Vector3.RIGHT, rot_y)
+		$Camera3D.rotate_object_local(Vector3.RIGHT, rot_y)
 
 
 func _physics_process(delta):

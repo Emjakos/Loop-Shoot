@@ -1,6 +1,7 @@
 extends CharacterBody3D
 var path: Array[Transform3D] = []
 var shots: Array[bool] = []
+var aims: Array[Transform3D] = []
 var path_index: int = 0
 @export var bullet_scene: PackedScene
 @export var bullet_speed = 20
@@ -13,13 +14,15 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if (!path.is_empty() && path_index<path.size()):
 		global_transform = path[path_index]
+		$Camera3D.transform = aims[path_index]
 		if (shots[path_index]):
 			_shoot()
 		path_index+=1
 
-func set_path(new_path: Array[Transform3D], new_shots: Array[bool]) -> void:
+func set_path(new_path: Array[Transform3D], new_shots: Array[bool], new_aims: Array[Transform3D]) -> void:
 	path = new_path
 	shots = new_shots
+	aims = new_aims
 func destroy() -> void:
 	queue_free()
 

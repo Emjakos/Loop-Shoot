@@ -1,13 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://wmayu3oi50hr"]
 
 [ext_resource type="Script" path="res://playerController.gd" id="1_yp2y7"]
-<<<<<<< Updated upstream
-[ext_resource type="PackedScene" path="res://bullet.tscn" id="2_bi62m"]
-=======
+[ext_resource type="PackedScene" uid="uid://dt1rj82ic1mdy" path="res://bullet.tscn" id="2_bi62m"]
 [ext_resource type="PackedScene" uid="uid://bhokqvvquh4ob" path="res://character_body.tscn" id="2_rnkng"]
-[ext_resource type="PackedScene" uid="uid://s54p3cnn0odl" path="res://character_gun.glb" id="3_x03g6"]
-[ext_resource type="PackedScene" uid="uid://bsrr02mx8ej31" path="res://character_head.tscn" id="4_00o4r"]
->>>>>>> Stashed changes
+[ext_resource type="PackedScene" uid="uid://rqsg3uhtcer5" path="res://character_head.tscn" id="4_00o4r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2v5w2"]
 
@@ -16,19 +12,15 @@ script = ExtResource("1_yp2y7")
 bullet_scene = ExtResource("2_bi62m")
 
 [node name="character_body" parent="." instance=ExtResource("2_rnkng")]
-transform = Transform3D(-0.24, 0, -2.09815e-08, 0, 0.24, 0, 2.09815e-08, 0, -0.24, 0, -1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_2v5w2")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.759001, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.807376, 0)
 cull_mask = 1048573
 
-[node name="character_gun" parent="Camera3D" instance=ExtResource("3_x03g6")]
-transform = Transform3D(-0.24, 2.04352e-11, 2.0962e-08, 2.359e-12, 0.24, -5.82077e-11, -2.09911e-08, -1.16415e-10, -0.24, 0.0193461, -1.51247, -0.292684)
-
 [node name="character_head" parent="Camera3D" instance=ExtResource("4_00o4r")]
-transform = Transform3D(-0.24, 0, -2.09815e-08, 0, 0.24, 0, 2.09815e-08, 0, -0.24, 0, -1.70467, 0)
+transform = Transform3D(-0.24, 0, -2.09815e-08, 0, 0.24, 0, 2.09815e-08, 0, -0.24, 0, -1.759, 0)
 
 [node name="Node3D" type="Node3D" parent="."]

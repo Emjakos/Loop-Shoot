@@ -3,6 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://cxwrx6s6jcfd8" path="res://character_body.glb" id="1_4tyri"]
 
 [node name="character_body" instance=ExtResource("1_4tyri")]
+transform = Transform3D(-0.24, 0, -2.09815e-08, 0, 0.24, 0, 2.09815e-08, 0, -0.24, 0, -1, 0)
 
 [node name="Cube" parent="." index="1"]
 visibility_range_begin = 0.75
+
+[node name="Cube_001" parent="." index="2"]
+visible = false
+
+[node name="Cube_003" parent="." index="4"]
+visible = false
