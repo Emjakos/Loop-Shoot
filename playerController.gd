@@ -19,9 +19,11 @@ func _shoot():
 	var main_scene = get_parent_node_3d()
 	var bullet: RigidBody3D = bullet_scene.instantiate()
 	var camera = $Camera3D
+	#var gun = camera.find_child("character_head").find_child("Cube_003")
 	bullet.transform = camera.global_transform
+	#bullet.position = gun.global_position
 	bullet.translate_object_local(Vector3.FORWARD)
-	bullet.apply_central_impulse((bullet.position - camera.global_position).normalized() * bullet_speed)
+	bullet.apply_central_impulse(-bullet.transform.basis.z * bullet_speed)
 	
 	main_scene.add_child(bullet)
 	has_shot = true
