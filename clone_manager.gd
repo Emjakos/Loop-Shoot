@@ -46,6 +46,7 @@ func spawn_clones() -> void:
 		var clone = clone_scene.instantiate()
 		clones.push_back(clone)
 		clone.set_path(previous_plays_positions[i], previous_shots[i], previous_aims[i])
+		clone.set_order(i+1) # current round is considered to be the 0th
 		get_tree().root.add_child(clone)
 	#print("spawned clones")
 	
