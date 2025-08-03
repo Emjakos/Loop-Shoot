@@ -409,3 +409,7 @@ theme = SubResource("Theme_80t45")
 theme_override_colors/font_color = Color(1, 0, 0, 0.196078)
 text = "[PLACEHOLDER]"
 script = ExtResource("7_qqgus")
+
+[node name="Crosshair" type="Label" parent="UserInterface/CenterContainer"]
+layout_mode = 2
+text = "+"
