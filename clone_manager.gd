@@ -1,11 +1,13 @@
 extends Node
 
 var player_positions: Array[Transform3D]=[]
+var player_shots: Array[bool]=[]
 var previous_plays_positions: Array[Array]=[]
+var previous_shots: Array[Array] = []
 @export var clone_scene: PackedScene
 @export var player: CharacterBody3D
 
-var clones: Array[PackedScene] = []
+var clones: Array[CharacterBody3D] = []
 
 func _input(event):  		
 	if event.is_action_pressed("create_clone"):
@@ -21,23 +23,26 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	player_positions.push_back(player.transform)
+	player_shots.push_back(player.get_has_shot())
 	
 func start_new_track() -> void:
 	player_positions = []
+	player_shots = []
 	
 func save_current() -> void:
 	previous_plays_positions.push_front(player_positions)
+	previous_shots.push_front(player_shots)
 	#print("created clone")
 	
 func spawn_clones() -> void:
-	for play_pos in previous_plays_positions:
+	for i in previous_plays_positions.size():
 		var clone = clone_scene.instantiate()
 		clones.push_back(clone)
-		clone.set_path(play_pos)
+		clone.set_path(previous_plays_positions[i], previous_shots[i])
 		get_tree().root.add_child(clone)
 	#print("spawned clones")
 	
 func delete_clones() -> void:
 	for clone in clones:
-		clone.queue_free()
+		clone.destroy()
 	clones = []

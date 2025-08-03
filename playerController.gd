@@ -13,6 +13,8 @@ var GRAVITY_DIR = ProjectSettings.get_setting("physics/3d/default_gravity_vector
 @export var bullet_scene: PackedScene
 @export var bullet_speed = 20
 
+var has_shot:bool = false
+
 func _shoot():
 	var main_scene = get_parent_node_3d()
 	var bullet: RigidBody3D = bullet_scene.instantiate()
@@ -22,6 +24,7 @@ func _shoot():
 	bullet.apply_central_impulse((bullet.position - camera.global_position).normalized() * bullet_speed)
 	
 	main_scene.add_child(bullet)
+	has_shot = true
 
 
 func _ready():
@@ -73,3 +76,7 @@ func _physics_process(delta):
 	velocity.z = movement.z
 	
 	move_and_slide()
+func get_has_shot() -> bool:
+	var temp = has_shot
+	has_shot = false
+	return temp
