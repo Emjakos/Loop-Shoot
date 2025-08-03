@@ -11,7 +11,7 @@ var GRAVITY = ProjectSettings.get_setting("physics/3d/default_gravity")
 var GRAVITY_DIR = ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 
 @export var bullet_scene: PackedScene
-@export var bullet_speed = 20
+@export var bullet_speed = 40
 
 var bullets: Array[Node3D] = []
 var has_shot:bool = false
@@ -29,6 +29,9 @@ func _shoot():
 	#bullet.position = gun.global_position
 	bullet.translate_object_local(Vector3.FORWARD)
 	bullet.apply_central_impulse(-bullet.transform.basis.z * bullet_speed)
+	#print("player tf. " , transform)
+	#print(camera.transform)
+	#print(bullet.transform)
 	
 	main_scene.add_child(bullet)
 	has_shot = true

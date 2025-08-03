@@ -10,7 +10,7 @@ signal round_started
 signal round_won
 signal round_failed
 
-var round_times = [7.5, 10, 12.5, 15, 17.5, 20]
+var round_times = [20, 15, 5, 20, 15, 10]
 
 func _ready():
 	start_round()
@@ -26,6 +26,8 @@ func start_round() -> void:
 	if (current_round >= spawn_points.size()):
 		current_round = 0
 	player.global_transform = spawn_points[current_round].transform
+	player.rot_y = 0
+	player.rot_x = player.rotation.y
 	round_started.emit()
 	$RoundTimer.paused = false
 	$RoundTimer.start(round_times[current_round])

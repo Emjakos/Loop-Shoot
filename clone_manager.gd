@@ -26,7 +26,7 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	player_positions.push_back(player.transform)
+	player_positions.push_back(player.global_transform)
 	if camera != null:
 		player_aims.push_back(camera.transform)
 	player_shots.push_back(player.get_has_shot())
@@ -34,6 +34,7 @@ func _process(_delta: float) -> void:
 func start_new_track() -> void:
 	player_positions = []
 	player_shots = []
+	player_aims = []
 	
 func save_current() -> void:
 	previous_plays_positions.push_front(player_positions)

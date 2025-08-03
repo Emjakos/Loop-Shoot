@@ -5,7 +5,7 @@ var aims: Array[Transform3D] = []
 var path_index: int = 0
 var bullets: Array[Node3D] = []
 @export var bullet_scene: PackedScene
-@export var bullet_speed = 20
+@export var bullet_speed = 40
 var slow_multiplier: int
 var process_index_tracker: int
 
@@ -54,5 +54,8 @@ func _shoot():
 	#bullet.position = gun.global_position
 	bullet.translate_object_local(Vector3.FORWARD)
 	bullet.apply_central_impulse(-bullet.transform.basis.z * bullet_speed / slow_multiplier)
+	#print("clone tf: ", transform)
+	#print(camera.transform)
+	#print(bullet.transform)
 	
 	main_scene.add_child(bullet)
