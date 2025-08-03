@@ -13,11 +13,14 @@ var GRAVITY_DIR = ProjectSettings.get_setting("physics/3d/default_gravity_vector
 @export var bullet_scene: PackedScene
 @export var bullet_speed = 20
 
+var bullets: Array[Node3D] = []
 var has_shot:bool = false
 
 func _shoot():
 	var main_scene = get_parent_node_3d()
 	var bullet: RigidBody3D = bullet_scene.instantiate()
+	bullets.push_back(bullet)
+	bullet.from_player = true
 	var camera = $Camera3D
 	#var gun = camera.find_child("character_head").find_child("Cube_003")
 	bullet.transform = camera.global_transform
@@ -83,3 +86,7 @@ func get_has_shot() -> bool:
 	var temp = has_shot
 	has_shot = false
 	return temp
+func destroy_bullets() -> void:
+	for bullet in bullets:
+		if(bullet != null):
+			bullet.destroy()
