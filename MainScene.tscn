@@ -34,7 +34,7 @@ albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="Theme" id="Theme_80t45"]
 default_font = ExtResource("6_7ncts")
-default_font_size = 160
+default_font_size = 200
 
 [node name="Node3D" type="Node3D"]
 
@@ -371,6 +371,9 @@ clone_manager = NodePath("../CloneManager")
 player = NodePath("../../Player")
 objective_label = NodePath("../../UserInterface/CenterContainer/ObjectiveLabel")
 
+[node name="RoundStartTimer" type="Timer" parent="Managers/RoundManager"]
+one_shot = true
+
 [node name="Spawnpoints" type="Node3D" parent="."]
 
 [node name="Spawn_1" type="Node3D" parent="Spawnpoints"]
@@ -413,3 +416,8 @@ script = ExtResource("7_qqgus")
 [node name="Crosshair" type="Label" parent="UserInterface/CenterContainer"]
 layout_mode = 2
 text = "+"
+
+[connection signal="round_failed" from="Managers/RoundManager" to="UserInterface/CenterContainer/ObjectiveLabel" method="_on_round_manager_round_failed"]
+[connection signal="round_started" from="Managers/RoundManager" to="UserInterface/CenterContainer/ObjectiveLabel" method="_on_round_manager_round_started"]
+[connection signal="round_won" from="Managers/RoundManager" to="UserInterface/CenterContainer/ObjectiveLabel" method="_on_round_manager_round_won"]
+[connection signal="timeout" from="Managers/RoundManager/RoundStartTimer" to="Managers/RoundManager" method="_on_round_start_timer_timeout"]

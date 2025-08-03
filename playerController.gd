@@ -16,6 +16,8 @@ var GRAVITY_DIR = ProjectSettings.get_setting("physics/3d/default_gravity_vector
 var bullets: Array[Node3D] = []
 var has_shot:bool = false
 
+var controls_disabled = false
+
 func _shoot():
 	var main_scene = get_parent_node_3d()
 	var bullet: RigidBody3D = bullet_scene.instantiate()
@@ -49,10 +51,10 @@ func _input(event):
 		
 	if event.is_action_pressed("click") and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	elif event.is_action_pressed("click") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+	elif not controls_disabled and event.is_action_pressed("click") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		_shoot()
 		
-	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and event is InputEventMouseMotion:
+	if not controls_disabled and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and event is InputEventMouseMotion:
 		rot_x += -event.relative.x * lookaround_speed
 		rot_y += -event.relative.y * lookaround_speed
 		rot_y = clampf(rot_y, min_rot_y, max_rot_y)
@@ -63,6 +65,8 @@ func _input(event):
 
 
 func _physics_process(delta):
+	if controls_disabled:
+		return
 	velocity += GRAVITY_DIR * GRAVITY * delta
 	
 	var movement = Vector3.ZERO
